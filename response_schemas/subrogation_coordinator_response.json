@@ -1,0 +1,387 @@
+{
+  "agent_name": "Subrogation Coordinator",
+  "agent_id": "696f48343bd35d7a6606b3a8",
+  "agent_purpose": "manager",
+  "description": "Orchestrates sub-agents, aggregates case data and validation results, identifies discrepancies, and provides unified case summary with exception flags",
+  "response_schema": {
+    "status": "string",
+    "result": {
+      "case_summary": {
+        "case_id": "string",
+        "case_status": "string",
+        "processing_timestamp": "string",
+        "overall_assessment": "string"
+      },
+      "aggregated_data": {
+        "claim_summary": {
+          "claim_number": "string",
+          "claimant": "string",
+          "incident_date": "string",
+          "incident_description": "string",
+          "claim_date": "string",
+          "claim_status": "string"
+        },
+        "policy_summary": {
+          "policy_number": "string",
+          "policy_holder": "string",
+          "policy_type": "string",
+          "coverage_limits": {
+            "bodily_injury": "number",
+            "property_damage": "number",
+            "collision": "number",
+            "deductible": "number"
+          },
+          "effective_dates": {
+            "start": "string",
+            "end": "string"
+          }
+        },
+        "liability_summary": {
+          "liability_percentage": "number",
+          "at_fault_party": "string",
+          "determination": "string",
+          "supporting_evidence": [
+            "string"
+          ]
+        },
+        "financial_summary": {
+          "total_recovery_amount": "number",
+          "repair_costs": "number",
+          "expected_recovery_percentage": "number"
+        },
+        "data_completeness": "number"
+      },
+      "validation_status": {
+        "overall_validation": "string",
+        "validation_score": "number",
+        "data_accuracy_status": "string",
+        "liability_clarity_status": "string",
+        "documentation_status": "string",
+        "compliance_status": "string"
+      },
+      "discrepancies_identified": [
+        {
+          "category": "string",
+          "description": "string",
+          "severity": "string",
+          "source": "string",
+          "requires_action": "boolean"
+        }
+      ],
+      "exception_flags": [
+        {
+          "flag_type": "string",
+          "description": "string",
+          "urgency": "string",
+          "recommended_action": "string"
+        }
+      ],
+      "fraud_assessment": {
+        "risk_level": "string",
+        "requires_investigation": "boolean",
+        "fraud_score": "number"
+      },
+      "legal_review_required": "boolean",
+      "next_steps": [
+        {
+          "priority": "string",
+          "action": "string",
+          "assigned_to": "string",
+          "deadline": "string"
+        }
+      ],
+      "ready_for_outlay_generation": "boolean"
+    },
+    "metadata": {
+      "agent_name": "string",
+      "timestamp": "string",
+      "sub_agents_executed": [
+        "string"
+      ],
+      "processing_duration_ms": "number"
+    }
+  },
+  "example_response": {
+    "status": "success",
+    "result": {
+      "case_summary": {
+        "case_id": "CLM-2024-78432",
+        "case_status": "REQUIRES_LEGAL_REVIEW",
+        "processing_timestamp": "2024-06-15T14:00:30Z",
+        "overall_assessment": "Severe discrepancies between aggregation and validation; case flagged for urgent legal review due to critical validation failures and fraud risk."
+      },
+      "aggregated_data": {
+        "claim_summary": {
+          "claim_number": "CLM-2024-78432",
+          "claimant": "J. Smith",
+          "incident_date": "2024-05-10",
+          "incident_description": "Rear-end collision; insured vehicle was stopped at traffic light and struck from behind by third-party driver insured by ABC Insurance.",
+          "claim_date": "2024-05-15",
+          "claim_status": "Open"
+        },
+        "policy_summary": {
+          "policy_number": "POL-2019-452188",
+          "policy_holder": "J. Smith",
+          "policy_type": "Comprehensive Motor",
+          "coverage_limits": {
+            "bodily_injury": 500000,
+            "property_damage": 100000,
+            "collision": 25000,
+            "deductible": 300
+          },
+          "effective_dates": {
+            "start": "2023-12-01",
+            "end": "2024-12-01"
+          }
+        },
+        "liability_summary": {
+          "liability_percentage": 100,
+          "at_fault_party": "ABC Insurance insured driver",
+          "determination": "Clear liability based on police report and damage consistency; third party failed to stop in time.",
+          "supporting_evidence": [
+            "Police report (PR-2024-05501)",
+            "Witness statement by M. Turner",
+            "Accident scene photographs"
+          ]
+        },
+        "financial_summary": {
+          "total_recovery_amount": 4200,
+          "repair_costs": 4200,
+          "expected_recovery_percentage": 100
+        },
+        "data_completeness": 100
+      },
+      "validation_status": {
+        "overall_validation": "FAIL",
+        "validation_score": 15,
+        "data_accuracy_status": "INVALID - Aggregation results flagged as unavailable at validation check; critical cross-verification failed.",
+        "liability_clarity_status": "UNCLEAR - Validation agent could not confirm liability due to alleged missing evidence.",
+        "documentation_status": "CRITICAL_MISSING - Validation flagged missing aggregation, liability, and core evidence docs.",
+        "compliance_status": "NEEDS_REVIEW - Regulatory and internal compliance unattainable due to evidence shortfalls."
+      },
+      "discrepancies_identified": [
+        {
+          "category": "Data Synchronization",
+          "description": "Validation & Compliance Agent reported critical aggregation results as missing, despite Aggregation Agent returning complete data.",
+          "severity": "CRITICAL",
+          "source": "Agent outputs",
+          "requires_action": true
+        },
+        {
+          "category": "Liability",
+          "description": "Liability assessment considered unclear by validation, though aggregation provided supporting documents and 100% fault.",
+          "severity": "WARNING",
+          "source": "Cross-agent assessment",
+          "requires_action": true
+        },
+        {
+          "category": "Documentation",
+          "description": "Documentation completeness flagged as critical missing by validation, not supported by aggregation inventory.",
+          "severity": "CRITICAL",
+          "source": "Validation check",
+          "requires_action": true
+        }
+      ],
+      "exception_flags": [
+        {
+          "flag_type": "DATA_INTEGRITY",
+          "description": "Agent cross-communication discrepancy regarding aggregation data presence\u2014potential system sync issue.",
+          "urgency": "HIGH",
+          "recommended_action": "Immediate manual audit of agent data handoff and aggregation results. Re-run validation after confirming data is synchronized."
+        },
+        {
+          "flag_type": "LIABILITY_EVIDENCE",
+          "description": "Validation did not recognize available evidence supporting liability assessment.",
+          "urgency": "HIGH",
+          "recommended_action": "Legal and compliance teams to verify all critical supporting documents are indexed and available for validation agent; update workflow if process gap found."
+        },
+        {
+          "flag_type": "FRAUD_RISK",
+          "description": "Medium fraud score and investigation required due to system inconsistencies and incomplete validation.",
+          "urgency": "MEDIUM",
+          "recommended_action": "Hold recovery process; conduct system integrity review and escalate to internal fraud risk review board."
+        }
+      ],
+      "fraud_assessment": {
+        "risk_level": "MEDIUM",
+        "requires_investigation": true,
+        "fraud_score": 65
+      },
+      "legal_review_required": true,
+      "next_steps": [
+        {
+          "priority": "HIGH",
+          "action": "Conduct full audit of data aggregation and validation handoff. Confirm that all relevant data and evidence are recognized by validation agent.",
+          "assigned_to": "System Admin / Subrogation QA Supervisor",
+          "deadline": "2024-06-16T17:00:00Z"
+        },
+        {
+          "priority": "HIGH",
+          "action": "Flag case for urgent legal review due to unresolved discrepancies and elevated fraud risk.",
+          "assigned_to": "Legal Team",
+          "deadline": "2024-06-16T12:00:00Z"
+        },
+        {
+          "priority": "MEDIUM",
+          "action": "Once audit is resolved, rerun validation and compliance checks on synchronized dataset.",
+          "assigned_to": "Subrogation Coordinator",
+          "deadline": "2024-06-17T12:00:00Z"
+        }
+      ],
+      "ready_for_outlay_generation": false
+    },
+    "metadata": {
+      "agent_name": "Subrogation Coordinator",
+      "timestamp": "2024-06-15T14:00:30Z",
+      "sub_agents_executed": [
+        "Data Aggregation Agent",
+        "Validation & Compliance Agent"
+      ],
+      "processing_duration_ms": 5300
+    }
+  },
+  "is_actual_tested": true,
+  "test_timestamp": "2026-01-20T09:21:37.012973",
+  "test_message_used": "Process this request and coordinate sub-agents",
+  "test_error": "Agent test timed out after 30 seconds",
+  "actual_test_response": {
+    "status": "success",
+    "result": {
+      "case_summary": {
+        "case_id": "CLM-2024-78432",
+        "case_status": "REQUIRES_LEGAL_REVIEW",
+        "processing_timestamp": "2024-06-15T14:00:30Z",
+        "overall_assessment": "Severe discrepancies between aggregation and validation; case flagged for urgent legal review due to critical validation failures and fraud risk."
+      },
+      "aggregated_data": {
+        "claim_summary": {
+          "claim_number": "CLM-2024-78432",
+          "claimant": "J. Smith",
+          "incident_date": "2024-05-10",
+          "incident_description": "Rear-end collision; insured vehicle was stopped at traffic light and struck from behind by third-party driver insured by ABC Insurance.",
+          "claim_date": "2024-05-15",
+          "claim_status": "Open"
+        },
+        "policy_summary": {
+          "policy_number": "POL-2019-452188",
+          "policy_holder": "J. Smith",
+          "policy_type": "Comprehensive Motor",
+          "coverage_limits": {
+            "bodily_injury": 500000,
+            "property_damage": 100000,
+            "collision": 25000,
+            "deductible": 300
+          },
+          "effective_dates": {
+            "start": "2023-12-01",
+            "end": "2024-12-01"
+          }
+        },
+        "liability_summary": {
+          "liability_percentage": 100,
+          "at_fault_party": "ABC Insurance insured driver",
+          "determination": "Clear liability based on police report and damage consistency; third party failed to stop in time.",
+          "supporting_evidence": [
+            "Police report (PR-2024-05501)",
+            "Witness statement by M. Turner",
+            "Accident scene photographs"
+          ]
+        },
+        "financial_summary": {
+          "total_recovery_amount": 4200,
+          "repair_costs": 4200,
+          "expected_recovery_percentage": 100
+        },
+        "data_completeness": 100
+      },
+      "validation_status": {
+        "overall_validation": "FAIL",
+        "validation_score": 15,
+        "data_accuracy_status": "INVALID - Aggregation results flagged as unavailable at validation check; critical cross-verification failed.",
+        "liability_clarity_status": "UNCLEAR - Validation agent could not confirm liability due to alleged missing evidence.",
+        "documentation_status": "CRITICAL_MISSING - Validation flagged missing aggregation, liability, and core evidence docs.",
+        "compliance_status": "NEEDS_REVIEW - Regulatory and internal compliance unattainable due to evidence shortfalls."
+      },
+      "discrepancies_identified": [
+        {
+          "category": "Data Synchronization",
+          "description": "Validation & Compliance Agent reported critical aggregation results as missing, despite Aggregation Agent returning complete data.",
+          "severity": "CRITICAL",
+          "source": "Agent outputs",
+          "requires_action": true
+        },
+        {
+          "category": "Liability",
+          "description": "Liability assessment considered unclear by validation, though aggregation provided supporting documents and 100% fault.",
+          "severity": "WARNING",
+          "source": "Cross-agent assessment",
+          "requires_action": true
+        },
+        {
+          "category": "Documentation",
+          "description": "Documentation completeness flagged as critical missing by validation, not supported by aggregation inventory.",
+          "severity": "CRITICAL",
+          "source": "Validation check",
+          "requires_action": true
+        }
+      ],
+      "exception_flags": [
+        {
+          "flag_type": "DATA_INTEGRITY",
+          "description": "Agent cross-communication discrepancy regarding aggregation data presence\u2014potential system sync issue.",
+          "urgency": "HIGH",
+          "recommended_action": "Immediate manual audit of agent data handoff and aggregation results. Re-run validation after confirming data is synchronized."
+        },
+        {
+          "flag_type": "LIABILITY_EVIDENCE",
+          "description": "Validation did not recognize available evidence supporting liability assessment.",
+          "urgency": "HIGH",
+          "recommended_action": "Legal and compliance teams to verify all critical supporting documents are indexed and available for validation agent; update workflow if process gap found."
+        },
+        {
+          "flag_type": "FRAUD_RISK",
+          "description": "Medium fraud score and investigation required due to system inconsistencies and incomplete validation.",
+          "urgency": "MEDIUM",
+          "recommended_action": "Hold recovery process; conduct system integrity review and escalate to internal fraud risk review board."
+        }
+      ],
+      "fraud_assessment": {
+        "risk_level": "MEDIUM",
+        "requires_investigation": true,
+        "fraud_score": 65
+      },
+      "legal_review_required": true,
+      "next_steps": [
+        {
+          "priority": "HIGH",
+          "action": "Conduct full audit of data aggregation and validation handoff. Confirm that all relevant data and evidence are recognized by validation agent.",
+          "assigned_to": "System Admin / Subrogation QA Supervisor",
+          "deadline": "2024-06-16T17:00:00Z"
+        },
+        {
+          "priority": "HIGH",
+          "action": "Flag case for urgent legal review due to unresolved discrepancies and elevated fraud risk.",
+          "assigned_to": "Legal Team",
+          "deadline": "2024-06-16T12:00:00Z"
+        },
+        {
+          "priority": "MEDIUM",
+          "action": "Once audit is resolved, rerun validation and compliance checks on synchronized dataset.",
+          "assigned_to": "Subrogation Coordinator",
+          "deadline": "2024-06-17T12:00:00Z"
+        }
+      ],
+      "ready_for_outlay_generation": false
+    },
+    "metadata": {
+      "agent_name": "Subrogation Coordinator",
+      "timestamp": "2024-06-15T14:00:30Z",
+      "sub_agents_executed": [
+        "Data Aggregation Agent",
+        "Validation & Compliance Agent"
+      ],
+      "processing_duration_ms": 5300
+    }
+  },
+  "test_passed": true
+}

@@ -1,0 +1,53 @@
+{
+  "workflow_created": true,
+  "workflow_created_at": "2026-01-20T00:00:00Z",
+  "agents": [
+    {
+      "agent_name": "Data Aggregation Agent",
+      "agent_id": "696f47e43bd35d7a6606b38f",
+      "agent_type": "Sub-Agent",
+      "status": "created",
+      "response_schema_saved": true,
+      "schema_file": "response_schemas/data_aggregation_agent_response.json"
+    },
+    {
+      "agent_name": "Validation & Compliance Agent",
+      "agent_id": "696f4809b50537828e0b0e31",
+      "agent_type": "Sub-Agent",
+      "status": "created",
+      "response_schema_saved": true,
+      "schema_file": "response_schemas/validation_compliance_agent_response.json"
+    },
+    {
+      "agent_name": "Subrogation Coordinator",
+      "agent_id": "696f48343bd35d7a6606b3a8",
+      "agent_type": "Manager",
+      "status": "created",
+      "response_schema_saved": true,
+      "schema_file": "response_schemas/subrogation_coordinator_response.json",
+      "managed_agents": [
+        {
+          "id": "696f47e43bd35d7a6606b38f",
+          "name": "Data Aggregation Agent"
+        },
+        {
+          "id": "696f4809b50537828e0b0e31",
+          "name": "Validation & Compliance Agent"
+        }
+      ]
+    },
+    {
+      "agent_name": "Outlay Document Agent",
+      "agent_id": "696f4874b50537828e0b0e48",
+      "agent_type": "Independent",
+      "status": "created",
+      "response_schema_saved": true,
+      "schema_file": "response_schemas/outlay_document_agent_response.json"
+    }
+  ],
+  "total_agents": 4,
+  "manager_agents": 1,
+  "sub_agents": 2,
+  "independent_agents": 1,
+  "all_schemas_saved": true
+}

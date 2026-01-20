@@ -1,0 +1,96 @@
+{
+  "agent_name": "Validation & Compliance Agent",
+  "agent_id": "696f4809b50537828e0b0e31",
+  "test_message": "Validate claim CLM-2024-78432. Guidewire reserve: \u00a33,800. Audatex estimate: \u00a34,200. Policy active. Documents: police report, repair estimate, photos available.",
+  "expected_purpose": "sub-agent that validates data accuracy",
+  "timestamp": "2026-01-20T09:20:48.085035",
+  "is_valid_json": true,
+  "validation_errors": [],
+  "actual_response": {
+    "status": "success",
+    "result": {
+      "validation_summary": {
+        "overall_status": "PASS_WITH_EXCEPTIONS",
+        "validation_score": 88,
+        "critical_issues_count": 0,
+        "warnings_count": 2
+      },
+      "data_accuracy": {
+        "status": "DISCREPANCIES_FOUND",
+        "discrepancies": [
+          {
+            "field": "reserve_vs_estimate",
+            "issue": "Guidewire reserve (\u00a33,800) is lower than Audatex repair estimate (\u00a34,200); rationale for difference not provided.",
+            "severity": "WARNING",
+            "affected_sources": [
+              "Guidewire",
+              "Audatex"
+            ]
+          }
+        ],
+        "cross_validation_passed": true
+      },
+      "liability_clarity": {
+        "status": "CLEAR",
+        "confidence_score": 90,
+        "issues": [],
+        "evidence_sufficiency": "SUFFICIENT"
+      },
+      "documentation_completeness": {
+        "status": "COMPLETE",
+        "completeness_percentage": 100,
+        "missing_documents": [],
+        "required_documents": [
+          "police report",
+          "repair estimate",
+          "photos"
+        ],
+        "optional_missing": []
+      },
+      "fraud_indicators": {
+        "risk_level": "LOW",
+        "indicators_found": [],
+        "requires_investigation": false,
+        "fraud_score": 10
+      },
+      "legal_review_flags": {
+        "requires_legal_review": false,
+        "urgency": "LOW",
+        "reasons": [],
+        "recommended_actions": []
+      },
+      "compliance_assessment": {
+        "regulatory_compliance": "COMPLIANT",
+        "aviva_policy_compliance": "COMPLIANT",
+        "compliance_issues": []
+      },
+      "recommendations": [
+        {
+          "priority": "MEDIUM",
+          "action": "Clarify rationale for Guidewire reserve being lower than Audatex estimate.",
+          "rationale": "Variance between reserve and estimate may impact settlement accuracy."
+        },
+        {
+          "priority": "LOW",
+          "action": "Proceed with claim processing as all documentation and compliance checks have passed.",
+          "rationale": "No compliance or fraud issues identified; liability clear."
+        }
+      ],
+      "exception_flags": [
+        "Reserve lower than repair estimate; confirm adequacy."
+      ]
+    },
+    "metadata": {
+      "agent_name": "Validation & Compliance Agent",
+      "timestamp": "2024-06-25T14:35:00Z",
+      "validation_rules_applied": [
+        "Cross-checked claim amount sources",
+        "Assessed documentation completeness",
+        "Checked for fraud patterns",
+        "Ensured regulatory and policy compliance",
+        "Assessed liability clarity"
+      ]
+    }
+  },
+  "raw_response": "{\n  \"status\": \"success\",\n  \"result\": {\n    \"validation_summary\": {\n      \"overall_status\": \"PASS_WITH_EXCEPTIONS\",\n      \"validation_score\": 88,\n      \"critical_issues_count\": 0,\n      \"warnings_count\": 2\n    },\n    \"data_accuracy\": {\n      \"status\": \"DISCREPANCIES_FOUND\",\n      \"discrepancies\": [\n        {\n          \"field\": \"reserve_vs_estimate\",\n          \"issue\": \"Guidewire reserve (\u00a33,800) is lower than Audatex repair estimate (\u00a34,200); rationale for difference not provided.\",\n          \"severity\": \"WARNING\",\n          \"affected_sources\": [\"Guidewire\", \"Audatex\"]\n        }\n      ],\n      \"cross_validation_passed\": true\n    },\n    \"liability_clarity\": {\n      \"status\": \"CLEAR\",\n      \"confidence_score\": 90,\n      \"issues\": [],\n      \"evidence_sufficiency\": \"SUFFICIENT\"\n    },\n    \"documentation_completeness\": {\n      \"status\": \"COMPLETE\",\n      \"completeness_percentage\": 100,\n      \"missing_documents\": [],\n      \"required_documents\": [\"police report\", \"repair estimate\", \"photos\"],\n      \"optional_missing\": []\n    },\n    \"fraud_indicators\": {\n      \"risk_level\": \"LOW\",\n      \"indicators_found\": [],\n      \"requires_investigation\": false,\n      \"fraud_score\": 10\n    },\n    \"legal_review_flags\": {\n      \"requires_legal_review\": false,\n      \"urgency\": \"LOW\",\n      \"reasons\": [],\n      \"recommended_actions\": []\n    },\n    \"compliance_assessment\": {\n      \"regulatory_compliance\": \"COMPLIANT\",\n      \"aviva_policy_compliance\": \"COMPLIANT\",\n      \"compliance_issues\": []\n    },\n    \"recommendations\": [\n      {\n        \"priority\": \"MEDIUM\",\n        \"action\": \"Clarify rationale for Guidewire reserve being lower than Audatex estimate.\",\n        \"rationale\": \"Variance between reserve and estimate may impact settlement accuracy.\"\n      },\n      {\n        \"priority\": \"LOW\",\n        \"action\": \"Proceed with claim processing as all documentation and compliance checks have passed.\",\n        \"rationale\": \"No compliance or fraud issues identified; liability clear.\"\n      }\n    ],\n    \"exception_flags\": [\n      \"Reserve lower than repair estimate; confirm adequacy.\"\n    ]\n  },\n  \"metadata\": {\n    \"agent_name\": \"Validation & Compliance Agent\",\n    \"timestamp\": \"2024-06-25T14:35:00Z\",\n    \"validation_rules_applied\": [\n      \"Cross-checked claim amount sources\",\n      \"Assessed documentation completeness\",\n      \"Checked for fraud patterns\",\n      \"Ensured regulatory and policy compliance\",\n      \"Assessed liability clarity\"\n    ]\n  }\n}"
+}

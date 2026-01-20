@@ -1,0 +1,260 @@
+{
+  "agent_name": "Data Aggregation Agent",
+  "agent_id": "696f47e43bd35d7a6606b38f",
+  "agent_purpose": "parser",
+  "description": "Extracts and structures claim details, policy info, liability assessments, repair estimates, vehicle data, and supporting documents from simulated insurance data sources",
+  "response_schema": {
+    "status": "string",
+    "result": {
+      "claim_details": {
+        "claim_number": "string",
+        "claim_date": "null",
+        "claim_status": "null",
+        "claimant_name": "string",
+        "incident_date": "null",
+        "incident_location": "null",
+        "loss_description": "null"
+      },
+      "policy_information": {
+        "policy_number": "null",
+        "policy_holder": "null",
+        "policy_type": "null",
+        "coverage_limits": "null",
+        "effective_dates": "null"
+      },
+      "liability_assessment": {
+        "liability_percentage": "null",
+        "at_fault_party": "null",
+        "liability_determination": "null",
+        "supporting_evidence": [
+          "any"
+        ]
+      },
+      "repair_estimates": {
+        "total_repair_cost": "number",
+        "labor_cost": "null",
+        "parts_cost": "null",
+        "estimator": "null",
+        "estimate_date": "null",
+        "itemized_repairs": [
+          "any"
+        ]
+      },
+      "vehicle_data": {
+        "vehicle_make": "null",
+        "vehicle_model": "null",
+        "vehicle_year": "null",
+        "vin": "null",
+        "registration": "null",
+        "mileage": "null"
+      },
+      "supporting_documents": {
+        "police_report": "null",
+        "witness_statements": [
+          "any"
+        ],
+        "photos": [
+          "any"
+        ],
+        "correspondence": [
+          "any"
+        ]
+      },
+      "data_completeness_score": "number",
+      "missing_fields": [
+        "string"
+      ]
+    },
+    "metadata": {
+      "agent_name": "string",
+      "timestamp": "string",
+      "data_sources_accessed": [
+        "string"
+      ]
+    }
+  },
+  "example_response": {
+    "status": "success",
+    "result": {
+      "claim_details": {
+        "claim_number": "CLM-2024-78432",
+        "claim_date": null,
+        "claim_status": null,
+        "claimant_name": "J. Smith",
+        "incident_date": null,
+        "incident_location": null,
+        "loss_description": null
+      },
+      "policy_information": {
+        "policy_number": null,
+        "policy_holder": null,
+        "policy_type": null,
+        "coverage_limits": null,
+        "effective_dates": null
+      },
+      "liability_assessment": {
+        "liability_percentage": null,
+        "at_fault_party": null,
+        "liability_determination": null,
+        "supporting_evidence": []
+      },
+      "repair_estimates": {
+        "total_repair_cost": 4200,
+        "labor_cost": null,
+        "parts_cost": null,
+        "estimator": null,
+        "estimate_date": null,
+        "itemized_repairs": []
+      },
+      "vehicle_data": {
+        "vehicle_make": null,
+        "vehicle_model": null,
+        "vehicle_year": null,
+        "vin": null,
+        "registration": null,
+        "mileage": null
+      },
+      "supporting_documents": {
+        "police_report": null,
+        "witness_statements": [],
+        "photos": [],
+        "correspondence": []
+      },
+      "data_completeness_score": 18,
+      "missing_fields": [
+        "claim_details.claim_date",
+        "claim_details.claim_status",
+        "claim_details.incident_date",
+        "claim_details.incident_location",
+        "claim_details.loss_description",
+        "policy_information.policy_number",
+        "policy_information.policy_holder",
+        "policy_information.policy_type",
+        "policy_information.coverage_limits",
+        "policy_information.effective_dates",
+        "liability_assessment.liability_percentage",
+        "liability_assessment.at_fault_party",
+        "liability_assessment.liability_determination",
+        "liability_assessment.supporting_evidence",
+        "repair_estimates.labor_cost",
+        "repair_estimates.parts_cost",
+        "repair_estimates.estimator",
+        "repair_estimates.estimate_date",
+        "repair_estimates.itemized_repairs",
+        "vehicle_data.vehicle_make",
+        "vehicle_data.vehicle_model",
+        "vehicle_data.vehicle_year",
+        "vehicle_data.vin",
+        "vehicle_data.registration",
+        "vehicle_data.mileage",
+        "supporting_documents.police_report",
+        "supporting_documents.witness_statements",
+        "supporting_documents.photos",
+        "supporting_documents.correspondence"
+      ]
+    },
+    "metadata": {
+      "agent_name": "Data Aggregation Agent",
+      "timestamp": "2024-06-09T11:32:19Z",
+      "data_sources_accessed": [
+        "Guidewire",
+        "Audatex",
+        "SharePoint"
+      ]
+    }
+  },
+  "is_actual_tested": true,
+  "test_timestamp": "2026-01-20T09:20:35.818353",
+  "test_message_used": "Parse this sample text for testing",
+  "actual_test_response": {
+    "status": "success",
+    "result": {
+      "claim_details": {
+        "claim_number": "CLM-2024-78432",
+        "claim_date": null,
+        "claim_status": null,
+        "claimant_name": "J. Smith",
+        "incident_date": null,
+        "incident_location": null,
+        "loss_description": null
+      },
+      "policy_information": {
+        "policy_number": null,
+        "policy_holder": null,
+        "policy_type": null,
+        "coverage_limits": null,
+        "effective_dates": null
+      },
+      "liability_assessment": {
+        "liability_percentage": null,
+        "at_fault_party": null,
+        "liability_determination": null,
+        "supporting_evidence": []
+      },
+      "repair_estimates": {
+        "total_repair_cost": 4200,
+        "labor_cost": null,
+        "parts_cost": null,
+        "estimator": null,
+        "estimate_date": null,
+        "itemized_repairs": []
+      },
+      "vehicle_data": {
+        "vehicle_make": null,
+        "vehicle_model": null,
+        "vehicle_year": null,
+        "vin": null,
+        "registration": null,
+        "mileage": null
+      },
+      "supporting_documents": {
+        "police_report": null,
+        "witness_statements": [],
+        "photos": [],
+        "correspondence": []
+      },
+      "data_completeness_score": 18,
+      "missing_fields": [
+        "claim_details.claim_date",
+        "claim_details.claim_status",
+        "claim_details.incident_date",
+        "claim_details.incident_location",
+        "claim_details.loss_description",
+        "policy_information.policy_number",
+        "policy_information.policy_holder",
+        "policy_information.policy_type",
+        "policy_information.coverage_limits",
+        "policy_information.effective_dates",
+        "liability_assessment.liability_percentage",
+        "liability_assessment.at_fault_party",
+        "liability_assessment.liability_determination",
+        "liability_assessment.supporting_evidence",
+        "repair_estimates.labor_cost",
+        "repair_estimates.parts_cost",
+        "repair_estimates.estimator",
+        "repair_estimates.estimate_date",
+        "repair_estimates.itemized_repairs",
+        "vehicle_data.vehicle_make",
+        "vehicle_data.vehicle_model",
+        "vehicle_data.vehicle_year",
+        "vehicle_data.vin",
+        "vehicle_data.registration",
+        "vehicle_data.mileage",
+        "supporting_documents.police_report",
+        "supporting_documents.witness_statements",
+        "supporting_documents.photos",
+        "supporting_documents.correspondence"
+      ]
+    },
+    "metadata": {
+      "agent_name": "Data Aggregation Agent",
+      "timestamp": "2024-06-09T11:32:19Z",
+      "data_sources_accessed": [
+        "Guidewire",
+        "Audatex",
+        "SharePoint"
+      ]
+    }
+  },
+  "test_passed": true
+}

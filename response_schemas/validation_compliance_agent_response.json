@@ -1,0 +1,270 @@
+{
+  "agent_name": "Validation & Compliance Agent",
+  "agent_id": "696f4809b50537828e0b0e31",
+  "agent_purpose": "analyzer",
+  "description": "Validates data accuracy, assesses liability clarity, checks documentation completeness, identifies fraud indicators, flags legal review needs, and ensures regulatory compliance",
+  "response_schema": {
+    "status": "string",
+    "result": {
+      "validation_summary": {
+        "overall_status": "string",
+        "validation_score": "number",
+        "critical_issues_count": "number",
+        "warnings_count": "number"
+      },
+      "data_accuracy": {
+        "status": "string",
+        "discrepancies": [
+          {
+            "field": "string",
+            "issue": "string",
+            "severity": "string",
+            "affected_sources": [
+              "string"
+            ]
+          }
+        ],
+        "cross_validation_passed": "boolean"
+      },
+      "liability_clarity": {
+        "status": "string",
+        "confidence_score": "number",
+        "issues": [
+          "any"
+        ],
+        "evidence_sufficiency": "string"
+      },
+      "documentation_completeness": {
+        "status": "string",
+        "completeness_percentage": "number",
+        "missing_documents": [
+          "any"
+        ],
+        "required_documents": [
+          "string"
+        ],
+        "optional_missing": [
+          "any"
+        ]
+      },
+      "fraud_indicators": {
+        "risk_level": "string",
+        "indicators_found": [
+          "any"
+        ],
+        "requires_investigation": "boolean",
+        "fraud_score": "number"
+      },
+      "legal_review_flags": {
+        "requires_legal_review": "boolean",
+        "urgency": "string",
+        "reasons": [
+          "any"
+        ],
+        "recommended_actions": [
+          "any"
+        ]
+      },
+      "compliance_assessment": {
+        "regulatory_compliance": "string",
+        "aviva_policy_compliance": "string",
+        "compliance_issues": [
+          "any"
+        ]
+      },
+      "recommendations": [
+        {
+          "priority": "string",
+          "action": "string",
+          "rationale": "string"
+        }
+      ],
+      "exception_flags": [
+        "string"
+      ]
+    },
+    "metadata": {
+      "agent_name": "string",
+      "timestamp": "string",
+      "validation_rules_applied": [
+        "string"
+      ]
+    }
+  },
+  "example_response": {
+    "status": "success",
+    "result": {
+      "validation_summary": {
+        "overall_status": "PASS_WITH_EXCEPTIONS",
+        "validation_score": 88,
+        "critical_issues_count": 0,
+        "warnings_count": 2
+      },
+      "data_accuracy": {
+        "status": "DISCREPANCIES_FOUND",
+        "discrepancies": [
+          {
+            "field": "reserve_vs_estimate",
+            "issue": "Guidewire reserve (\u00a33,800) is lower than Audatex repair estimate (\u00a34,200); rationale for difference not provided.",
+            "severity": "WARNING",
+            "affected_sources": [
+              "Guidewire",
+              "Audatex"
+            ]
+          }
+        ],
+        "cross_validation_passed": true
+      },
+      "liability_clarity": {
+        "status": "CLEAR",
+        "confidence_score": 90,
+        "issues": [],
+        "evidence_sufficiency": "SUFFICIENT"
+      },
+      "documentation_completeness": {
+        "status": "COMPLETE",
+        "completeness_percentage": 100,
+        "missing_documents": [],
+        "required_documents": [
+          "police report",
+          "repair estimate",
+          "photos"
+        ],
+        "optional_missing": []
+      },
+      "fraud_indicators": {
+        "risk_level": "LOW",
+        "indicators_found": [],
+        "requires_investigation": false,
+        "fraud_score": 10
+      },
+      "legal_review_flags": {
+        "requires_legal_review": false,
+        "urgency": "LOW",
+        "reasons": [],
+        "recommended_actions": []
+      },
+      "compliance_assessment": {
+        "regulatory_compliance": "COMPLIANT",
+        "aviva_policy_compliance": "COMPLIANT",
+        "compliance_issues": []
+      },
+      "recommendations": [
+        {
+          "priority": "MEDIUM",
+          "action": "Clarify rationale for Guidewire reserve being lower than Audatex estimate.",
+          "rationale": "Variance between reserve and estimate may impact settlement accuracy."
+        },
+        {
+          "priority": "LOW",
+          "action": "Proceed with claim processing as all documentation and compliance checks have passed.",
+          "rationale": "No compliance or fraud issues identified; liability clear."
+        }
+      ],
+      "exception_flags": [
+        "Reserve lower than repair estimate; confirm adequacy."
+      ]
+    },
+    "metadata": {
+      "agent_name": "Validation & Compliance Agent",
+      "timestamp": "2024-06-25T14:35:00Z",
+      "validation_rules_applied": [
+        "Cross-checked claim amount sources",
+        "Assessed documentation completeness",
+        "Checked for fraud patterns",
+        "Ensured regulatory and policy compliance",
+        "Assessed liability clarity"
+      ]
+    }
+  },
+  "is_actual_tested": true,
+  "test_timestamp": "2026-01-20T09:20:48.086920",
+  "test_message_used": "Analyze this sample data for testing",
+  "actual_test_response": {
+    "status": "success",
+    "result": {
+      "validation_summary": {
+        "overall_status": "PASS_WITH_EXCEPTIONS",
+        "validation_score": 88,
+        "critical_issues_count": 0,
+        "warnings_count": 2
+      },
+      "data_accuracy": {
+        "status": "DISCREPANCIES_FOUND",
+        "discrepancies": [
+          {
+            "field": "reserve_vs_estimate",
+            "issue": "Guidewire reserve (\u00a33,800) is lower than Audatex repair estimate (\u00a34,200); rationale for difference not provided.",
+            "severity": "WARNING",
+            "affected_sources": [
+              "Guidewire",
+              "Audatex"
+            ]
+          }
+        ],
+        "cross_validation_passed": true
+      },
+      "liability_clarity": {
+        "status": "CLEAR",
+        "confidence_score": 90,
+        "issues": [],
+        "evidence_sufficiency": "SUFFICIENT"
+      },
+      "documentation_completeness": {
+        "status": "COMPLETE",
+        "completeness_percentage": 100,
+        "missing_documents": [],
+        "required_documents": [
+          "police report",
+          "repair estimate",
+          "photos"
+        ],
+        "optional_missing": []
+      },
+      "fraud_indicators": {
+        "risk_level": "LOW",
+        "indicators_found": [],
+        "requires_investigation": false,
+        "fraud_score": 10
+      },
+      "legal_review_flags": {
+        "requires_legal_review": false,
+        "urgency": "LOW",
+        "reasons": [],
+        "recommended_actions": []
+      },
+      "compliance_assessment": {
+        "regulatory_compliance": "COMPLIANT",
+        "aviva_policy_compliance": "COMPLIANT",
+        "compliance_issues": []
+      },
+      "recommendations": [
+        {
+          "priority": "MEDIUM",
+          "action": "Clarify rationale for Guidewire reserve being lower than Audatex estimate.",
+          "rationale": "Variance between reserve and estimate may impact settlement accuracy."
+        },
+        {
+          "priority": "LOW",
+          "action": "Proceed with claim processing as all documentation and compliance checks have passed.",
+          "rationale": "No compliance or fraud issues identified; liability clear."
+        }
+      ],
+      "exception_flags": [
+        "Reserve lower than repair estimate; confirm adequacy."
+      ]
+    },
+    "metadata": {
+      "agent_name": "Validation & Compliance Agent",
+      "timestamp": "2024-06-25T14:35:00Z",
+      "validation_rules_applied": [
+        "Cross-checked claim amount sources",
+        "Assessed documentation completeness",
+        "Checked for fraud patterns",
+        "Ensured regulatory and policy compliance",
+        "Assessed liability clarity"
+      ]
+    }
+  },
+  "test_passed": true
+}

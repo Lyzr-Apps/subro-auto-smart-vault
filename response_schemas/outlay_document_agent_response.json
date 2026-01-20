@@ -1,0 +1,311 @@
+{
+  "agent_name": "Outlay Document Agent",
+  "agent_id": "696f4874b50537828e0b0e48",
+  "agent_purpose": "custom",
+  "description": "Generates formatted outlay documents with recovery calculations, audit trails, and document sections for subrogation cases",
+  "response_schema": {
+    "status": "string",
+    "result": {
+      "document_metadata": {
+        "document_id": "string",
+        "document_type": "string",
+        "template_used": "string",
+        "generated_timestamp": "string",
+        "case_reference": "string"
+      },
+      "outlay_summary": {
+        "total_recovery_amount": "number",
+        "currency": "string",
+        "breakdown": [
+          {
+            "category": "string",
+            "description": "string",
+            "amount": "number"
+          }
+        ],
+        "recovery_calculation": {
+          "total_damages": "number",
+          "liability_percentage": "number",
+          "recoverable_amount": "number",
+          "administrative_fees": "number",
+          "final_recovery_amount": "number"
+        }
+      },
+      "case_details_included": {
+        "claim_number": "string",
+        "policy_number": "string",
+        "claimant_name": "string",
+        "incident_date": "string",
+        "liability_party": "string",
+        "liability_percentage": "number"
+      },
+      "supporting_documentation": {
+        "police_report_referenced": "boolean",
+        "repair_estimates_included": "boolean",
+        "witness_statements_included": "boolean",
+        "photos_attached": "boolean",
+        "policy_documents_referenced": "boolean"
+      },
+      "audit_trail": [
+        {
+          "step": "string",
+          "timestamp": "string",
+          "action": "string",
+          "data_source": "string"
+        }
+      ],
+      "validation_checks_passed": {
+        "data_completeness": "boolean",
+        "calculation_accuracy": "boolean",
+        "template_compliance": "boolean",
+        "regulatory_compliance": "boolean"
+      },
+      "document_sections": {
+        "executive_summary": "string",
+        "incident_details": "string",
+        "liability_assessment": "string",
+        "financial_breakdown": "string",
+        "supporting_evidence": "string",
+        "recovery_recommendation": "string"
+      },
+      "document_status": "string",
+      "next_actions": [
+        {
+          "action": "string",
+          "assigned_to": "string",
+          "deadline": "string"
+        }
+      ]
+    },
+    "metadata": {
+      "agent_name": "string",
+      "timestamp": "string",
+      "document_format": "string",
+      "version": "string"
+    }
+  },
+  "example_response": {
+    "status": "success",
+    "result": {
+      "document_metadata": {
+        "document_id": "OUTLAY-CLM-2024-78432-001",
+        "document_type": "STANDARD_OUTLAY",
+        "template_used": "standard_outlay_v1.0",
+        "generated_timestamp": "2024-06-21T14:30:00Z",
+        "case_reference": "CLM-2024-78432"
+      },
+      "outlay_summary": {
+        "total_recovery_amount": 4200,
+        "currency": "GBP",
+        "breakdown": [
+          {
+            "category": "Damages",
+            "description": "Total settlement amount claimed for vehicle repair and associated expenses",
+            "amount": 4000
+          },
+          {
+            "category": "Administrative Fees",
+            "description": "Case administration and processing charges",
+            "amount": 200
+          }
+        ],
+        "recovery_calculation": {
+          "total_damages": 4000,
+          "liability_percentage": 100,
+          "recoverable_amount": 4000,
+          "administrative_fees": 200,
+          "final_recovery_amount": 4200
+        }
+      },
+      "case_details_included": {
+        "claim_number": "CLM-2024-78432",
+        "policy_number": "UNKNOWN",
+        "claimant_name": "J. Smith",
+        "incident_date": "UNKNOWN",
+        "liability_party": "ABC Insurance",
+        "liability_percentage": 100
+      },
+      "supporting_documentation": {
+        "police_report_referenced": false,
+        "repair_estimates_included": true,
+        "witness_statements_included": false,
+        "photos_attached": false,
+        "policy_documents_referenced": true
+      },
+      "audit_trail": [
+        {
+          "step": "Case Details Received",
+          "timestamp": "2024-06-21T14:28:10Z",
+          "action": "Intake of claim details and validated document status",
+          "data_source": "Subrogation Coordinator"
+        },
+        {
+          "step": "Template Selection",
+          "timestamp": "2024-06-21T14:28:15Z",
+          "action": "Selected Standard Outlay template based on case complexity and validation",
+          "data_source": "System Rules"
+        },
+        {
+          "step": "Recovery Calculation",
+          "timestamp": "2024-06-21T14:28:25Z",
+          "action": "Calculated recoverable and final recovery amounts using liability %",
+          "data_source": "Claim Data"
+        },
+        {
+          "step": "Document Assembly",
+          "timestamp": "2024-06-21T14:29:30Z",
+          "action": "Compiled outlay document sections and summaries",
+          "data_source": "Validated Claim Records"
+        },
+        {
+          "step": "Validation Checks",
+          "timestamp": "2024-06-21T14:29:50Z",
+          "action": "Performed data completeness and accuracy checks",
+          "data_source": "Internal Validation Module"
+        }
+      ],
+      "validation_checks_passed": {
+        "data_completeness": true,
+        "calculation_accuracy": true,
+        "template_compliance": true,
+        "regulatory_compliance": true
+      },
+      "document_sections": {
+        "executive_summary": "This outlay document outlines the recovery claim against ABC Insurance for incident involving J. Smith, with 100% liability attributed to the third party. The total recovery amount is \u00a34,200.",
+        "incident_details": "Incident details for claim CLM-2024-78432 have been validated. Full incident report is on file. Incident date is listed as UNKNOWN.",
+        "liability_assessment": "Based on submissions and carrier evaluation, responsibility rests fully with ABC Insurance (100% liability).",
+        "financial_breakdown": "Damages incurred total \u00a34,000 with administrative fees of \u00a3200, bringing the full recoverable amount to \u00a34,200.",
+        "supporting_evidence": "Repair estimates and policy documents have been validated and are referenced in this outlay. No police report or witness statements were submitted. No photos attached.",
+        "recovery_recommendation": "Proceed with immediate recovery action for the total claim of \u00a34,200 from ABC Insurance. No further legal or evidentiary review required."
+      },
+      "document_status": "READY_FOR_REVIEW",
+      "next_actions": [
+        {
+          "action": "Review and approve outlay document",
+          "assigned_to": "Subrogation Manager",
+          "deadline": "2024-06-24T17:00:00Z"
+        }
+      ]
+    },
+    "metadata": {
+      "agent_name": "Outlay Document Agent",
+      "timestamp": "2024-06-21T14:30:00Z",
+      "document_format": "JSON",
+      "version": "1.0"
+    }
+  },
+  "is_actual_tested": true,
+  "test_timestamp": "2026-01-20T09:21:45.964044",
+  "test_message_used": "Provide a sample response",
+  "actual_test_response": {
+    "status": "success",
+    "result": {
+      "document_metadata": {
+        "document_id": "OUTLAY-CLM-2024-78432-001",
+        "document_type": "STANDARD_OUTLAY",
+        "template_used": "standard_outlay_v1.0",
+        "generated_timestamp": "2024-06-21T14:30:00Z",
+        "case_reference": "CLM-2024-78432"
+      },
+      "outlay_summary": {
+        "total_recovery_amount": 4200,
+        "currency": "GBP",
+        "breakdown": [
+          {
+            "category": "Damages",
+            "description": "Total settlement amount claimed for vehicle repair and associated expenses",
+            "amount": 4000
+          },
+          {
+            "category": "Administrative Fees",
+            "description": "Case administration and processing charges",
+            "amount": 200
+          }
+        ],
+        "recovery_calculation": {
+          "total_damages": 4000,
+          "liability_percentage": 100,
+          "recoverable_amount": 4000,
+          "administrative_fees": 200,
+          "final_recovery_amount": 4200
+        }
+      },
+      "case_details_included": {
+        "claim_number": "CLM-2024-78432",
+        "policy_number": "UNKNOWN",
+        "claimant_name": "J. Smith",
+        "incident_date": "UNKNOWN",
+        "liability_party": "ABC Insurance",
+        "liability_percentage": 100
+      },
+      "supporting_documentation": {
+        "police_report_referenced": false,
+        "repair_estimates_included": true,
+        "witness_statements_included": false,
+        "photos_attached": false,
+        "policy_documents_referenced": true
+      },
+      "audit_trail": [
+        {
+          "step": "Case Details Received",
+          "timestamp": "2024-06-21T14:28:10Z",
+          "action": "Intake of claim details and validated document status",
+          "data_source": "Subrogation Coordinator"
+        },
+        {
+          "step": "Template Selection",
+          "timestamp": "2024-06-21T14:28:15Z",
+          "action": "Selected Standard Outlay template based on case complexity and validation",
+          "data_source": "System Rules"
+        },
+        {
+          "step": "Recovery Calculation",
+          "timestamp": "2024-06-21T14:28:25Z",
+          "action": "Calculated recoverable and final recovery amounts using liability %",
+          "data_source": "Claim Data"
+        },
+        {
+          "step": "Document Assembly",
+          "timestamp": "2024-06-21T14:29:30Z",
+          "action": "Compiled outlay document sections and summaries",
+          "data_source": "Validated Claim Records"
+        },
+        {
+          "step": "Validation Checks",
+          "timestamp": "2024-06-21T14:29:50Z",
+          "action": "Performed data completeness and accuracy checks",
+          "data_source": "Internal Validation Module"
+        }
+      ],
+      "validation_checks_passed": {
+        "data_completeness": true,
+        "calculation_accuracy": true,
+        "template_compliance": true,
+        "regulatory_compliance": true
+      },
+      "document_sections": {
+        "executive_summary": "This outlay document outlines the recovery claim against ABC Insurance for incident involving J. Smith, with 100% liability attributed to the third party. The total recovery amount is \u00a34,200.",
+        "incident_details": "Incident details for claim CLM-2024-78432 have been validated. Full incident report is on file. Incident date is listed as UNKNOWN.",
+        "liability_assessment": "Based on submissions and carrier evaluation, responsibility rests fully with ABC Insurance (100% liability).",
+        "financial_breakdown": "Damages incurred total \u00a34,000 with administrative fees of \u00a3200, bringing the full recoverable amount to \u00a34,200.",
+        "supporting_evidence": "Repair estimates and policy documents have been validated and are referenced in this outlay. No police report or witness statements were submitted. No photos attached.",
+        "recovery_recommendation": "Proceed with immediate recovery action for the total claim of \u00a34,200 from ABC Insurance. No further legal or evidentiary review required."
+      },
+      "document_status": "READY_FOR_REVIEW",
+      "next_actions": [
+        {
+          "action": "Review and approve outlay document",
+          "assigned_to": "Subrogation Manager",
+          "deadline": "2024-06-24T17:00:00Z"
+        }
+      ]
+    },
+    "metadata": {
+      "agent_name": "Outlay Document Agent",
+      "timestamp": "2024-06-21T14:30:00Z",
+      "document_format": "JSON",
+      "version": "1.0"
+    }
+  },
+  "test_passed": true
+}

@@ -1,0 +1,100 @@
+{
+  "agent_name": "Data Aggregation Agent",
+  "agent_id": "696f47e43bd35d7a6606b38f",
+  "test_message": "Process claim CLM-2024-78432 for claimant J. Smith. Third party: ABC Insurance. Estimated value: \u00a34,200",
+  "expected_purpose": "sub-agent that compiles claim data",
+  "timestamp": "2026-01-20T09:20:35.817552",
+  "is_valid_json": true,
+  "validation_errors": [],
+  "actual_response": {
+    "status": "success",
+    "result": {
+      "claim_details": {
+        "claim_number": "CLM-2024-78432",
+        "claim_date": null,
+        "claim_status": null,
+        "claimant_name": "J. Smith",
+        "incident_date": null,
+        "incident_location": null,
+        "loss_description": null
+      },
+      "policy_information": {
+        "policy_number": null,
+        "policy_holder": null,
+        "policy_type": null,
+        "coverage_limits": null,
+        "effective_dates": null
+      },
+      "liability_assessment": {
+        "liability_percentage": null,
+        "at_fault_party": null,
+        "liability_determination": null,
+        "supporting_evidence": []
+      },
+      "repair_estimates": {
+        "total_repair_cost": 4200,
+        "labor_cost": null,
+        "parts_cost": null,
+        "estimator": null,
+        "estimate_date": null,
+        "itemized_repairs": []
+      },
+      "vehicle_data": {
+        "vehicle_make": null,
+        "vehicle_model": null,
+        "vehicle_year": null,
+        "vin": null,
+        "registration": null,
+        "mileage": null
+      },
+      "supporting_documents": {
+        "police_report": null,
+        "witness_statements": [],
+        "photos": [],
+        "correspondence": []
+      },
+      "data_completeness_score": 18,
+      "missing_fields": [
+        "claim_details.claim_date",
+        "claim_details.claim_status",
+        "claim_details.incident_date",
+        "claim_details.incident_location",
+        "claim_details.loss_description",
+        "policy_information.policy_number",
+        "policy_information.policy_holder",
+        "policy_information.policy_type",
+        "policy_information.coverage_limits",
+        "policy_information.effective_dates",
+        "liability_assessment.liability_percentage",
+        "liability_assessment.at_fault_party",
+        "liability_assessment.liability_determination",
+        "liability_assessment.supporting_evidence",
+        "repair_estimates.labor_cost",
+        "repair_estimates.parts_cost",
+        "repair_estimates.estimator",
+        "repair_estimates.estimate_date",
+        "repair_estimates.itemized_repairs",
+        "vehicle_data.vehicle_make",
+        "vehicle_data.vehicle_model",
+        "vehicle_data.vehicle_year",
+        "vehicle_data.vin",
+        "vehicle_data.registration",
+        "vehicle_data.mileage",
+        "supporting_documents.police_report",
+        "supporting_documents.witness_statements",
+        "supporting_documents.photos",
+        "supporting_documents.correspondence"
+      ]
+    },
+    "metadata": {
+      "agent_name": "Data Aggregation Agent",
+      "timestamp": "2024-06-09T11:32:19Z",
+      "data_sources_accessed": [
+        "Guidewire",
+        "Audatex",
+        "SharePoint"
+      ]
+    }
+  },
+  "raw_response": "{\n  \"status\": \"success\",\n  \"result\": {\n    \"claim_details\": {\n      \"claim_number\": \"CLM-2024-78432\",\n      \"claim_date\": null,\n      \"claim_status\": null,\n      \"claimant_name\": \"J. Smith\",\n      \"incident_date\": null,\n      \"incident_location\": null,\n      \"loss_description\": null\n    },\n    \"policy_information\": {\n      \"policy_number\": null,\n      \"policy_holder\": null,\n      \"policy_type\": null,\n      \"coverage_limits\": null,\n      \"effective_dates\": null\n    },\n    \"liability_assessment\": {\n      \"liability_percentage\": null,\n      \"at_fault_party\": null,\n      \"liability_determination\": null,\n      \"supporting_evidence\": []\n    },\n    \"repair_estimates\": {\n      \"total_repair_cost\": 4200,\n      \"labor_cost\": null,\n      \"parts_cost\": null,\n      \"estimator\": null,\n      \"estimate_date\": null,\n      \"itemized_repairs\": []\n    },\n    \"vehicle_data\": {\n      \"vehicle_make\": null,\n      \"vehicle_model\": null,\n      \"vehicle_year\": null,\n      \"vin\": null,\n      \"registration\": null,\n      \"mileage\": null\n    },\n    \"supporting_documents\": {\n      \"police_report\": null,\n      \"witness_statements\": [],\n      \"photos\": [],\n      \"correspondence\": []\n    },\n    \"data_completeness_score\": 18,\n    \"missing_fields\": [\n      \"claim_details.claim_date\",\n      \"claim_details.claim_status\",\n      \"claim_details.incident_date\",\n      \"claim_details.incident_location\",\n      \"claim_details.loss_description\",\n      \"policy_information.policy_number\",\n      \"policy_information.policy_holder\",\n      \"policy_information.policy_type\",\n      \"policy_information.coverage_limits\",\n      \"policy_information.effective_dates\",\n      \"liability_assessment.liability_percentage\",\n      \"liability_assessment.at_fault_party\",\n      \"liability_assessment.liability_determination\",\n      \"liability_assessment.supporting_evidence\",\n      \"repair_estimates.labor_cost\",\n      \"repair_estimates.parts_cost\",\n      \"repair_estimates.estimator\",\n      \"repair_estimates.estimate_date\",\n      \"repair_estimates.itemized_repairs\",\n      \"vehicle_data.vehicle_make\",\n      \"vehicle_data.vehicle_model\",\n      \"vehicle_data.vehicle_year\",\n      \"vehicle_data.vin\",\n      \"vehicle_data.registration\",\n      \"vehicle_data.mileage\",\n      \"supporting_documents.police_report\",\n      \"supporting_documents.witness_statements\",\n      \"supporting_documents.photos\",\n      \"supporting_documents.correspondence\"\n    ]\n  },\n  \"metadata\": {\n    \"agent_name\": \"Data Aggregation Agent\",\n    \"timestamp\": \"2024-06-09T11:32:19Z\",\n    \"data_sources_accessed\": [\"Guidewire\", \"Audatex\", \"SharePoint\"]\n  }\n}"
+}

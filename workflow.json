@@ -1,0 +1,147 @@
+{
+  "workflow_name": "Aviva Subrogation Recovery Assistant",
+  "workflow_description": "Orchestrates data aggregation, validation, and outlay document generation for insurance subrogation cases",
+  "created_at": "2026-01-20T00:00:00Z",
+  "nodes": [
+    {
+      "id": "input_node",
+      "type": "Input",
+      "label": "Case Selection Input",
+      "nodeCategory": "input",
+      "position": {
+        "x": 100,
+        "y": 200
+      }
+    },
+    {
+      "id": "subrogation_coordinator",
+      "type": "Agent",
+      "label": "Subrogation Coordinator",
+      "nodeCategory": "agent",
+      "agent_id": "696f48343bd35d7a6606b3a8",
+      "agent_type": "Manager",
+      "position": {
+        "x": 400,
+        "y": 200
+      }
+    },
+    {
+      "id": "data_aggregation_agent",
+      "type": "Agent",
+      "label": "Data Aggregation Agent",
+      "nodeCategory": "agent",
+      "agent_id": "696f47e43bd35d7a6606b38f",
+      "agent_type": "Sub-Agent",
+      "position": {
+        "x": 700,
+        "y": 100
+      }
+    },
+    {
+      "id": "validation_compliance_agent",
+      "type": "Agent",
+      "label": "Validation & Compliance Agent",
+      "nodeCategory": "agent",
+      "agent_id": "696f4809b50537828e0b0e31",
+      "agent_type": "Sub-Agent",
+      "position": {
+        "x": 700,
+        "y": 300
+      }
+    },
+    {
+      "id": "output_node",
+      "type": "Output",
+      "label": "Case Summary Output",
+      "nodeCategory": "end",
+      "position": {
+        "x": 1000,
+        "y": 200
+      }
+    },
+    {
+      "id": "outlay_document_agent",
+      "type": "Agent",
+      "label": "Outlay Document Agent",
+      "nodeCategory": "agent",
+      "agent_id": "696f4874b50537828e0b0e48",
+      "agent_type": "Independent",
+      "position": {
+        "x": 1300,
+        "y": 200
+      }
+    }
+  ],
+  "edges": [
+    {
+      "source": "input_node",
+      "target": "subrogation_coordinator"
+    },
+    {
+      "source": "subrogation_coordinator",
+      "target": "data_aggregation_agent"
+    },
+    {
+      "source": "subrogation_coordinator",
+      "target": "validation_compliance_agent"
+    },
+    {
+      "source": "subrogation_coordinator",
+      "target": "output_node"
+    },
+    {
+      "source": "output_node",
+      "target": "outlay_document_agent"
+    }
+  ],
+  "agents": [
+    {
+      "agent_id": "696f47e43bd35d7a6606b38f",
+      "name": "Data Aggregation Agent",
+      "description": "Compiles and structures claim details, policy information, liability assessments, repair estimates, vehicle data, and supporting document references from simulated Guidewire, Audatex, and SharePoint data sources",
+      "agent_type": "Sub-Agent",
+      "provider": "OpenAI",
+      "model": "gpt-4.1",
+      "temperature": 0.1,
+      "top_p": 1,
+      "response_schema": "response_schemas/data_aggregation_agent_response.json"
+    },
+    {
+      "agent_id": "696f4809b50537828e0b0e31",
+      "name": "Validation & Compliance Agent",
+      "description": "Cross-validates data accuracy across simulated sources, checks for liability clarity, documentation completeness, identifies fraud indicators, flags cases requiring legal review, and ensures compliance with insurance regulations and Aviva policies",
+      "agent_type": "Sub-Agent",
+      "provider": "OpenAI",
+      "model": "gpt-4.1",
+      "temperature": 0.2,
+      "top_p": 1,
+      "response_schema": "response_schemas/validation_compliance_agent_response.json"
+    },
+    {
+      "agent_id": "696f48343bd35d7a6606b3a8",
+      "name": "Subrogation Coordinator",
+      "description": "Orchestrates data aggregation and validation sub-agents, aggregates results, identifies discrepancies, and presents unified case summary with validation status and exception flags for agent review",
+      "agent_type": "Manager",
+      "provider": "OpenAI",
+      "model": "gpt-4.1",
+      "temperature": 0.2,
+      "top_p": 1,
+      "response_schema": "response_schemas/subrogation_coordinator_response.json",
+      "managed_agents": [
+        "696f47e43bd35d7a6606b38f",
+        "696f4809b50537828e0b0e31"
+      ]
+    },
+    {
+      "agent_id": "696f4874b50537828e0b0e48",
+      "name": "Outlay Document Agent",
+      "description": "Generates formatted outlay documents using validated case data, applies appropriate templates based on case type, calculates recovery amounts, and creates audit-ready documentation with full transformation trail",
+      "agent_type": "Independent",
+      "provider": "OpenAI",
+      "model": "gpt-4.1",
+      "temperature": 0.2,
+      "top_p": 1,
+      "response_schema": "response_schemas/outlay_document_agent_response.json"
+    }
+  ]
+}
