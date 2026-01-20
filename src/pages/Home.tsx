@@ -748,14 +748,14 @@ function CaseProcessingView({
                         <div>
                           <span className="text-gray-600">Supporting Evidence:</span>
                           <ul className="mt-1 space-y-1">
-                            {response.aggregated_data.liability_summary.supporting_evidence.map(
+                            {response.aggregated_data.liability_summary.supporting_evidence?.map(
                               (evidence, i) => (
                                 <li key={i} className="text-xs flex items-start gap-1">
                                   <CheckCircle2 className="h-3 w-3 mt-0.5 text-green-600 flex-shrink-0" />
                                   <span>{evidence}</span>
                                 </li>
                               )
-                            )}
+                            ) || <li className="text-xs text-gray-500">No evidence listed</li>}
                           </ul>
                         </div>
                       </div>
@@ -870,19 +870,23 @@ function CaseProcessingView({
                     <div>
                       <p className="font-semibold text-sm mb-2">Discrepancies Identified</p>
                       <div className="space-y-2">
-                        {response.discrepancies_identified.map((disc, i) => (
-                          <Alert key={i} variant="destructive">
-                            <AlertTriangle className="h-4 w-4" />
-                            <AlertTitle className="text-sm flex items-center justify-between">
-                              {disc.category}
-                              <SeverityBadge severity={disc.severity} />
-                            </AlertTitle>
-                            <AlertDescription className="text-xs mt-2">
-                              {disc.description}
-                            </AlertDescription>
-                            <p className="text-xs text-gray-600 mt-2">Source: {disc.source}</p>
-                          </Alert>
-                        ))}
+                        {response.discrepancies_identified?.length > 0 ? (
+                          response.discrepancies_identified.map((disc, i) => (
+                            <Alert key={i} variant="destructive">
+                              <AlertTriangle className="h-4 w-4" />
+                              <AlertTitle className="text-sm flex items-center justify-between">
+                                {disc.category}
+                                <SeverityBadge severity={disc.severity} />
+                              </AlertTitle>
+                              <AlertDescription className="text-xs mt-2">
+                                {disc.description}
+                              </AlertDescription>
+                              <p className="text-xs text-gray-600 mt-2">Source: {disc.source}</p>
+                            </Alert>
+                          ))
+                        ) : (
+                          <p className="text-sm text-gray-500">No discrepancies identified</p>
+                        )}
                       </div>
                     </div>
 
@@ -892,20 +896,24 @@ function CaseProcessingView({
                     <div>
                       <p className="font-semibold text-sm mb-2">Exception Flags</p>
                       <div className="space-y-2">
-                        {response.exception_flags.map((flag, i) => (
-                          <div key={i} className="border border-orange-300 rounded p-2 bg-orange-50">
-                            <div className="flex items-start justify-between mb-1">
-                              <p className="font-medium text-xs">{flag.flag_type}</p>
-                              <Badge variant="outline" className="text-xs">
-                                {flag.urgency}
-                              </Badge>
+                        {response.exception_flags?.length > 0 ? (
+                          response.exception_flags.map((flag, i) => (
+                            <div key={i} className="border border-orange-300 rounded p-2 bg-orange-50">
+                              <div className="flex items-start justify-between mb-1">
+                                <p className="font-medium text-xs">{flag.flag_type}</p>
+                                <Badge variant="outline" className="text-xs">
+                                  {flag.urgency}
+                                </Badge>
+                              </div>
+                              <p className="text-xs text-gray-700 mb-2">{flag.description}</p>
+                              <p className="text-xs text-gray-600">
+                                <strong>Action:</strong> {flag.recommended_action}
+                              </p>
                             </div>
-                            <p className="text-xs text-gray-700 mb-2">{flag.description}</p>
-                            <p className="text-xs text-gray-600">
-                              <strong>Action:</strong> {flag.recommended_action}
-                            </p>
-                          </div>
-                        ))}
+                          ))
+                        ) : (
+                          <p className="text-sm text-gray-500">No exception flags</p>
+                        )}
                       </div>
                     </div>
 
@@ -937,20 +945,24 @@ function CaseProcessingView({
             </CardHeader>
             <CardContent>
               <div className="space-y-3">
-                {response.next_steps.map((step, i) => (
-                  <div key={i} className="flex items-start gap-3 border-l-4 border-[#0033A0] pl-4 py-2">
-                    <div className="flex-1">
-                      <div className="flex items-center gap-2 mb-1">
-                        <PriorityBadge priority={step.priority.toLowerCase()} />
-                        <p className="font-medium text-sm">{step.action}</p>
+                {response.next_steps?.length > 0 ? (
+                  response.next_steps.map((step, i) => (
+                    <div key={i} className="flex items-start gap-3 border-l-4 border-[#0033A0] pl-4 py-2">
+                      <div className="flex-1">
+                        <div className="flex items-center gap-2 mb-1">
+                          <PriorityBadge priority={step.priority.toLowerCase()} />
+                          <p className="font-medium text-sm">{step.action}</p>
+                        </div>
+                        <p className="text-xs text-gray-600">Assigned to: {step.assigned_to}</p>
+                        <p className="text-xs text-gray-600">
+                          Deadline: {new Date(step.deadline).toLocaleString()}
+                        </p>
                       </div>
-                      <p className="text-xs text-gray-600">Assigned to: {step.assigned_to}</p>
-                      <p className="text-xs text-gray-600">
-                        Deadline: {new Date(step.deadline).toLocaleString()}
-                      </p>
                     </div>
-                  </div>
-                ))}
+                  ))
+                ) : (
+                  <p className="text-sm text-gray-500">No next steps defined</p>
+                )}
               </div>
             </CardContent>
             <CardFooter className="flex justify-between">
@@ -1164,7 +1176,7 @@ function OutlayDocumentReview({
                           </TableRow>
                         </TableHeader>
                         <TableBody>
-                          {document.outlay_summary.breakdown.map((item, i) => (
+                          {document.outlay_summary.breakdown?.map((item, i) => (
                             <TableRow key={i}>
                               <TableCell className="font-medium">{item.category}</TableCell>
                               <TableCell className="text-sm text-gray-600">
@@ -1174,7 +1186,7 @@ function OutlayDocumentReview({
                                 £{item.amount.toLocaleString()}
                               </TableCell>
                             </TableRow>
-                          ))}
+                          )) || <TableRow><TableCell colSpan={3} className="text-center text-gray-500">No breakdown available</TableCell></TableRow>}
                         </TableBody>
                       </Table>
 
@@ -1417,24 +1429,28 @@ function OutlayDocumentReview({
               <CardContent className="pt-4">
                 <ScrollArea className="h-[300px]">
                   <div className="space-y-3">
-                    {document.audit_trail.map((step, i) => (
-                      <div
-                        key={i}
-                        className="border-l-2 border-[#0033A0] pl-3 pb-3 relative"
-                      >
-                        <div className="absolute -left-1.5 top-0 w-3 h-3 rounded-full bg-[#0033A0]" />
-                        <p className="font-medium text-xs">{step.step}</p>
-                        <p className="text-xs text-gray-600 mt-1">{step.action}</p>
-                        <div className="flex items-center gap-2 mt-1">
-                          <Badge variant="outline" className="text-xs">
-                            {step.data_source}
-                          </Badge>
-                          <span className="text-xs text-gray-500">
-                            {new Date(step.timestamp).toLocaleTimeString()}
-                          </span>
+                    {document.audit_trail?.length > 0 ? (
+                      document.audit_trail.map((step, i) => (
+                        <div
+                          key={i}
+                          className="border-l-2 border-[#0033A0] pl-3 pb-3 relative"
+                        >
+                          <div className="absolute -left-1.5 top-0 w-3 h-3 rounded-full bg-[#0033A0]" />
+                          <p className="font-medium text-xs">{step.step}</p>
+                          <p className="text-xs text-gray-600 mt-1">{step.action}</p>
+                          <div className="flex items-center gap-2 mt-1">
+                            <Badge variant="outline" className="text-xs">
+                              {step.data_source}
+                            </Badge>
+                            <span className="text-xs text-gray-500">
+                              {new Date(step.timestamp).toLocaleTimeString()}
+                            </span>
+                          </div>
                         </div>
-                      </div>
-                    ))}
+                      ))
+                    ) : (
+                      <p className="text-sm text-gray-500">No audit trail available</p>
+                    )}
                   </div>
                 </ScrollArea>
               </CardContent>
