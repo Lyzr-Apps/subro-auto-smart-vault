@@ -24,7 +24,7 @@ import {
   TrendingUp,
   AlertCircle,
   ChevronRight,
-  Home,
+  Home as HomeIcon,
   Users,
   Filter,
   Search,
@@ -1479,7 +1479,7 @@ function SupervisorQueue({ onBackToDashboard }: { onBackToDashboard: () => void 
           </p>
         </div>
         <Button variant="outline" onClick={onBackToDashboard} className="gap-2">
-          <Home className="h-4 w-4" />
+          <HomeIcon className="h-4 w-4" />
           Back to Dashboard
         </Button>
       </div>
@@ -1645,7 +1645,7 @@ export default function Home() {
                 onClick={handleBackToDashboard}
                 className="text-white hover:bg-blue-800"
               >
-                <Home className="h-4 w-4 mr-2" />
+                <HomeIcon className="h-4 w-4 mr-2" />
                 Dashboard
               </Button>
               <Button
